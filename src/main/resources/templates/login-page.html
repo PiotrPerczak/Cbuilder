@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">  
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Project</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/globals.css">
+        <link rel="stylesheet" href="/css/login-page-style.css">
+    </head>
+    <body>
+        <div class="login-container">
+            <h2>Login Form</h2>
+            <p th:if="${param.error}">You entered wrong username/password.</p>
+            <p th:if="${param.logout}">You have been logged out.</p>
+            <form action="#" th:action="@{/authenticate}" method="POST">
+              <input type="text" id="username" name="username" placeholder="Username" required>
+              <input type="password" id="password" name="password" placeholder="Password" required>
+              <input type="submit" value="Login">
+            </form>
+            <a th:href="@{/register/registration-form}">Register</a>
+          </div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              var loginContainer = document.querySelector(".login-container");
+              loginContainer.style.opacity = 0;
+        
+              setTimeout(function() {
+                loginContainer.style.opacity = 1;
+              }, 500);
+            });
+          </script>
+    </body>
+</html>

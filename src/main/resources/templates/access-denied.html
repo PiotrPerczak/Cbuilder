@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">  
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Access denied</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        
+        <div><div class="slider-container">
+            <div class="slide" style="opacity: 1;">
+              <h2 class="text-center text-xl font-bold mb-4">Item 1</h2>
+              <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eros enim, venenatis vel posuere ut, suscipit sed sapien. Fusce ut dui eget est interdum pellentesque. Integer nec mi in mauris porta sagittis ac in ipsum. Nullam luctus malesuada lobortis. Aliquam erat volutpat. Suspendisse tempor velit a lobortis sagittis. Sed feugiat, enim sed pharetra dignissim, diam velit iaculis eros, non imperdiet nunc dolor a nunc.</p>
+            </div>
+            <div class="slide" style="opacity: 0;">
+              <h2 class="text-center text-xl font-bold mb-4">Item 2</h2>
+              <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eros enim, venenatis vel posuere ut, suscipit sed sapien. Fusce ut dui eget est interdum pellentesque. Integer nec mi in mauris porta sagittis ac in ipsum. Nullam luctus malesuada lobortis. Aliquam erat volutpat. Suspendisse tempor velit a lobortis sagittis. Sed feugiat, enim sed pharetra dignissim, diam velit iaculis eros, non imperdiet nunc dolor a nunc.</p>
+            </div>
+            <div class="slide" style="opacity: 0;">
+              <h2 class="text-center text-xl font-bold mb-4">Item 3</h2>
+              <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eros enim, venenatis vel posuere ut, suscipit sed sapien. Fusce ut dui eget est interdum pellentesque. Integer nec mi in mauris porta sagittis ac in ipsum. Nullam luctus malesuada lobortis. Aliquam erat volutpat. Suspendisse tempor velit a lobortis sagittis. Sed feugiat, enim sed pharetra dignissim, diam velit iaculis eros, non imperdiet nunc dolor a nunc.</p>
+            </div>
+          </div>
+          
+          <style>
+            .slider-container {
+              position: relative;
+              overflow: hidden;
+              width: 100%;
+              height: 400px;
+            }
+          
+            .slide {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 400px;
+              opacity: 0;
+              transition: opacity 0.5s ease-in-out;
+            }
+          
+            .slide:first-child {
+              opacity: 1;
+            }
+          
+            h2, p {
+              color: #333;
+            }
+          </style>
+          
+          <script>
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const slideInterval = setInterval(nextSlide, 5000);
+          
+            function nextSlide() {
+              slides[currentSlide].style.opacity = '0';
+              currentSlide = (currentSlide + 1) % slides.length;
+              slides[currentSlide].style.opacity = '1';
+            }
+          </script></div>
+                      
+    </body>
+</html>

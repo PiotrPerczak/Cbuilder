@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="head">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Application</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="flex h-screen">
+      <div class="navbar flex flex-col bg-gray-900 items-center justify-center">
+        <div class="py-4 px-6 bg-gray-900 text-white">
+          <div class="flex items-center text-center">
+            <span class="text-3xl font-bold text-green-500">C</span>
+            <span class="text-3xl font-bold text-sky-400">Builder</span>
+          </div>
+        </div>
+        <nav class="flex-1 px-4 py-8">
+          <ul class="space-y-4">
+            <li>
+              <button
+                th:onclick="newSession([[${sessionId}]])"
+                class="mb-16 rounded-md border-sky-500 bg-transparent border-2 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-600 hover:border-sky-600 hover:delay-150 hover:duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                New component
+              </button>
+            </li>
+            <form th:action="@{/chat?(id=${sessionId})}" method="post">
+              <fieldset>
+                <div class="form-group">
+                  <textarea
+                    id="message"
+                    type="text"
+                    name="prompt"
+                    rows="4"
+                    required
+                    autofocus
+                    th:value="${request}"
+                    class="max-w-lg border border-gray-600 bg-gray-900 text-white"
+                  ></textarea>
+                </div>
+                <div class="row">
+                  <input
+                    type="submit"
+                    class="mt-4 bg-green-600 text-white px-5 py-2 rounded-md shadow-md transition duration-300 ease-in-out delay-100 hover:bg-green-500 input-send"
+                    value="Send"
+                  />
+                  <button
+                    th:onclick="saveSession([[${sessionId}]])"
+                    class="ml-3 py-2 px-5 bg-sky-600 text-white rounded-md shadow-md transition duration-300 ease-in-out delay-100 hover:bg-sky-500"
+                  >
+                    Save
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+            <button
+              id="copy-button"
+              class="rounded-md border-sky-500 bg-transparent border-2 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-600 hover:border-sky-600 hover:delay-150 hover:duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Copy to clipboard
+            </button>
+          </ul>
+        </nav>
+        <form action="#" th:action="@{/logout}" method="POST" class="">
+          <input
+            type="submit"
+            value="Logout"
+            class="mt-auto mb-4 -ml-20 input-send rounded-md border-sky-900 bg-transparent border-2 px-4 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-600 hover:border-sky-600 hover:delay-150 hover:duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          />
+        </form>
+      </div>
+      <!-- History -->
+      <div class="flex flex-col bg-gray-900 text-white">
+        <nav class="flex-1 px-4 scrollable-panel">
+          <ul class="space-y-4">
+            <div class="container mx-auto px-4 py-8">
+              <div th:each="componentSession : ${sessionsList}">
+                <!--Generated component starts here-->
+                <div
+                  th:if="${componentSession.id != sessionId}"
+                  class="border border-gray-600 p-4 rounded-lg flex flex-col items-start mb-4 object-cover max-w-md"
+                >
+                  <div th:if="${componentSession.saved == false}">
+                    <i class="fas fa-times-circle text-red-500"></i>
+                  </div>
+                  <div
+                    class="p-4 mb-4"
+                    th:utext="${componentSession.component}"
+                  >
+                    HERE
+                  </div>
+                  <div class="flex items-center mb-2">
+                    <button
+                      th:onclick="deleteSession([[${componentSession.id}]])"
+                      class="py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-400 mr-4"
+                    >
+                      DELETE
+                    </button>
+                    <button
+                      th:onclick="changeSession([[${componentSession.id}]])"
+                      class="py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700"
+                    >
+                      LOAD SESSION
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </nav>
+      </div>
+      <!-- Main Content -->
+      <div class="flex items-center justify-center main-content bg-gray-900">
+        <div id="text-to-copy" class="starter-template">
+          <div th:utext="${sessionFragmentTest}">HERE</div>
+        </div>
+      </div>
+    </div>
+    <script th:src="@{/js/main.js}"></script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+
+.scrollbar::-webkit-scrollbar {
+  width: 20px;
+  height: 20px;
+}
+  
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #f7f4ed;
+}
+  
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #e0cbcb;
+  border-radius: 100vh;
+  border: 3px solid #f6f7ed;
+}
+  
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #c0a0b9;
+}
+
+
+
+body {
+}
+.navbar {
+    background-color: #23272A;
+    width: 13%;
+    min-width: 150px; /* Adjust as needed */
+}
+.navbar h1 {
+    color: #FFFFFF;
+}
+.navbar a {
+    color: #FFFFFF;
+}
+.main-content {
+    background-color: #36393F;
+    flex: 1; /* Take up remaining space */
+    padding: 2rem;
+}
+
+.form-group textarea[type="text"] {
+    color: #000000;
+}
+
+.hidden {
+    display: none;
+}
+
+.scrollable-panel {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.scrollable-panel::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+textarea {
+  resize:both;
+  border-radius: 5px;
+}
+textarea:focus {
+  outline: none !important;
+  border:2px solid #0ea5e9;
+  box-shadow: 0px 0px 2px #0369a1;
+}
+
+.input-send:hover {
+  cursor: pointer;
+}
